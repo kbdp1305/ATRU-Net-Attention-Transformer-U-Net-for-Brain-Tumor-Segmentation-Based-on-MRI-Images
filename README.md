@@ -6,4 +6,4 @@ and registered under Hak Cipta. All rights reserved.
 Any reproduction, distribution, or modification of this code without explicit written permission  
 from the author is strictly prohibited.
 
-© 2025 Krisna Bayu Dharma Putra. All rights reserved.
+© 2024 Krisna Bayu Dharma Putra. All rights reserved.
