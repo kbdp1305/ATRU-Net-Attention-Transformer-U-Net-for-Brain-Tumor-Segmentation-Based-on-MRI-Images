@@ -73,7 +73,7 @@ Each layer progressively reduces spatial resolution while increasing semantic ab
 U-Net’s direct skip-connections tend to cause semantic mismatches between encoder and decoder features.  
 **FPN** solves this by introducing top-down lateral connections that merge deep and shallow features through learnable 1×1 convolutions:
 
-`F_{p_i} = Conv_{1×1}(F_{l_i}) + Upsample(F_{p_{i+1}})`
+![FPN Equation](https://latex.codecogs.com/png.image?\color{white}F_{p_i}=Conv_{1\times1}(F_{l_i})+Upsample(F_{p_{i+1}}))
 
 This enables **multi-scale context reconstruction**, improving generalization for tumors of varying size and morphology.
 
@@ -82,7 +82,7 @@ This enables **multi-scale context reconstruction**, improving generalization fo
 ### 🔹 Transformer Bridge
 The core of ATRU-Net is its **self-attention Transformer encoder**. Flattened FPN features are processed as token embeddings:  
 
-`Attention(Q,K,V) = softmax((QK^T)/√d_k)V`
+![Attention Equation](https://latex.codecogs.com/png.image?\color{white}Attention(Q,K,V)=softmax(\frac{QK^T}{\sqrt{d_k}})V)
 
 This mechanism captures **long-range feature dependencies** across the entire image, giving the network an understanding of **global tumor structure** rather than isolated regions.
 
@@ -91,7 +91,7 @@ This mechanism captures **long-range feature dependencies** across the entire im
 ### 🔹 Global Spatial Attention (GSA)
 GSA improves spatial sensitivity by combining average and max pooling over the feature maps, followed by convolution and sigmoid activation:  
 
- `M_GSA = σ(f⁷×⁷([AvgPool(F); MaxPool(F)]))`
+![GSA Equation](https://latex.codecogs.com/png.image?\color{white}M_{GSA}=\sigma(f^{7\times7}([AvgPool(F);MaxPool(F)])))
 
 This weighting map emphasizes **boundary-relevant** and **region-contrasting** pixels, crucial for precise tumor contouring.
 
@@ -145,7 +145,6 @@ The hybridization of convolutional and transformer elements yields a model that 
 ## ⚗️ Performance Analysis
 - **Computation Time:** 34 minutes per training run (20 epochs).  
 - **Memory Footprint:** ~3.2 GB VRAM on P100.  
-- **Inference Speed:** 28–32 FPS (optimized batch inference).  
 - **Precision:** High confidence localization on small lesions.  
 
 ---
