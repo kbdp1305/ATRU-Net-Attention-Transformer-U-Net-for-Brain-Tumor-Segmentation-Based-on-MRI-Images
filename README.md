@@ -144,7 +144,6 @@ The hybridization of convolutional and transformer elements yields a model that 
 
 ## ⚗️ Performance Analysis
 - **Computation Time:** 34 minutes per training run (20 epochs).  
-- **Memory Footprint:** ~3.2 GB VRAM on P100.  
 - **Precision:** High confidence localization on small lesions.  
 
 ---
