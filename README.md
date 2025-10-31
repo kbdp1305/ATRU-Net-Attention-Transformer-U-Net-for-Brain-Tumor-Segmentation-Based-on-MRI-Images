@@ -73,7 +73,7 @@ Each layer progressively reduces spatial resolution while increasing semantic ab
 U-Net’s direct skip-connections tend to cause semantic mismatches between encoder and decoder features.  
 **FPN** solves this by introducing top-down lateral connections that merge deep and shallow features through learnable 1×1 convolutions:
 
-\[ F_{p_i} = Conv_{1×1}(F_{l_i}) + Upsample(F_{p_{i+1}}) \]
+`F_{p_i} = Conv_{1×1}(F_{l_i}) + Upsample(F_{p_{i+1}})`
 
 This enables **multi-scale context reconstruction**, improving generalization for tumors of varying size and morphology.
 
@@ -82,7 +82,7 @@ This enables **multi-scale context reconstruction**, improving generalization fo
 ### 🔹 Transformer Bridge
 The core of ATRU-Net is its **self-attention Transformer encoder**. Flattened FPN features are processed as token embeddings:  
 
-\[ Attention(Q,K,V) = softmax(\frac{QK^T}{\sqrt{d_k}})V \]
+`Attention(Q,K,V) = softmax((QK^T)/√d_k)V`
 
 This mechanism captures **long-range feature dependencies** across the entire image, giving the network an understanding of **global tumor structure** rather than isolated regions.
 
@@ -91,7 +91,7 @@ This mechanism captures **long-range feature dependencies** across the entire im
 ### 🔹 Global Spatial Attention (GSA)
 GSA improves spatial sensitivity by combining average and max pooling over the feature maps, followed by convolution and sigmoid activation:  
 
-\[ M_{GSA} = σ(f^{7×7}([AvgPool(F); MaxPool(F)])) \]
+`M_{GSA} = σ(f^{7×7}([AvgPool(F); MaxPool(F)]))`
 
 This weighting map emphasizes **boundary-relevant** and **region-contrasting** pixels, crucial for precise tumor contouring.
 
@@ -199,7 +199,7 @@ The model’s success at GEMASTIK XVII 2024 showcases its **technical innovation
 | **Krisna Bayu Dharma Putra** | **Team Leader · Artificial Intelligence Engineer · Model Architect** | Designed and coded the entire ATRU-Net architecture (FPN, GSA, Transformer), implemented training pipeline, ran ablation and evaluation studies, fine-tuning the model, and authored the technical and results sections of the paper |
 | **Rabbani Nur Kumoro** | **Quality Assurance Engineer · Fine-tuning Specialist** | Performed fine-tuning and validation experiments post-implementation, ensured reproducibility and metric stability, and contributed to experiment logging |
 | **Vincent Yeozekiel** | **Scientific Paper Writer · Visualization Specialist** | Created ATRU-Net architectural diagram, supported fine-tuning, formatted the research paper, and handled visualization of figures and result tables |
-| **Dzikri Rahadian Fudholi** | **Research Support** | Assisted in dataset organization, experiment replication, and final GEMASTIK presentation materials |
+| **Dzikri Rahadian Fudholi** | **Supervisor** | Supervising the research |
 
 📧 [linkedin.com/in/dharma-putra1305](https://linkedin.com/in/dharma-putra1305)  
 🌐 [github.com/kbdp1305](https://github.com/kbdp1305)
