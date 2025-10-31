@@ -45,7 +45,6 @@ Together, these mechanisms enable the model to understand **both global tumor co
 1. Image resize → 256×256 pixels  
 2. Normalization → range [0, 1]  
 3. Grayscale conversion for masks  
-4. Augmentation → random rotation, flip, contrast enhancement  
 5. Conversion → tensorized input (PyTorch DataLoader)  
 
 These steps reduce overfitting and stabilize training under limited dataset conditions.
