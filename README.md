@@ -91,7 +91,7 @@ This mechanism captures **long-range feature dependencies** across the entire im
 ### 🔹 Global Spatial Attention (GSA)
 GSA improves spatial sensitivity by combining average and max pooling over the feature maps, followed by convolution and sigmoid activation:  
 
- MGSA​=σ(f7×7([AvgPool(F);MaxPool(F)]))`
+ `M_GSA = σ(f⁷×⁷([AvgPool(F); MaxPool(F)]))`
 
 This weighting map emphasizes **boundary-relevant** and **region-contrasting** pixels, crucial for precise tumor contouring.
 
