@@ -73,7 +73,7 @@ Each layer progressively reduces spatial resolution while increasing semantic ab
 U-Net’s direct skip-connections tend to cause semantic mismatches between encoder and decoder features.  
 **FPN** solves this by introducing top-down lateral connections that merge deep and shallow features through learnable 1×1 convolutions:
 
-![FPN Equation](https://latex.codecogs.com/png.image?\color{white}F_{p_i}=Conv_{1\times1}(F_{l_i})+Upsample(F_{p_{i+1}}))
+![FPN Equation](https://latex.codecogs.com/png.image?\color{black}F_{p_i}=Conv_{1\times1}(F_{l_i})+Upsample(F_{p_{i+1}}))
 
 This enables **multi-scale context reconstruction**, improving generalization for tumors of varying size and morphology.
 
@@ -82,7 +82,7 @@ This enables **multi-scale context reconstruction**, improving generalization fo
 ### 🔹 Transformer Bridge
 The core of ATRU-Net is its **self-attention Transformer encoder**. Flattened FPN features are processed as token embeddings:  
 
-![Attention Equation](https://latex.codecogs.com/png.image?\color{white}Attention(Q,K,V)=softmax(\frac{QK^T}{\sqrt{d_k}})V)
+![Attention Equation](https://latex.codecogs.com/png.image?\color{black}Attention(Q,K,V)=softmax(\frac{QK^T}{\sqrt{d_k}})V)
 
 This mechanism captures **long-range feature dependencies** across the entire image, giving the network an understanding of **global tumor structure** rather than isolated regions.
 
@@ -91,7 +91,7 @@ This mechanism captures **long-range feature dependencies** across the entire im
 ### 🔹 Global Spatial Attention (GSA)
 GSA improves spatial sensitivity by combining average and max pooling over the feature maps, followed by convolution and sigmoid activation:  
 
-![GSA Equation](https://latex.codecogs.com/png.image?\color{white}M_{GSA}=\sigma(f^{7\times7}([AvgPool(F);MaxPool(F)])))
+![GSA Equation](https://latex.codecogs.com/png.image?\color{black}M_{GSA}=\sigma(f^{7\times7}([AvgPool(F);MaxPool(F)])))
 
 This weighting map emphasizes **boundary-relevant** and **region-contrasting** pixels, crucial for precise tumor contouring.
 
@@ -156,23 +156,6 @@ The hybridization of convolutional and transformer elements yields a model that 
 
 ---
 
-## 🧩 Repository Structure
-
-```
-├── data/                    # Preprocessed MRI images and masks
-├── models/
-│   ├── atrunet.py           # Core architecture definition (FPN + GSA + Transformer)
-│   └── __init__.py
-├── utils/
-│   ├── metrics.py           # Dice, IoU, precision, recall metrics
-│   ├── visualizer.py        # Visualization utilities for prediction overlays
-│   └── losses.py            # Dice loss implementation
-├── train.py                 # Main training script (configurable via argparse)
-├── config.yaml              # Hyperparameter configurations
-└── README.md
-```
-
----
 
 ## 📜 Conclusion
 ATRU-Net demonstrates that combining **FPN**, **Transformer**, and **Global Spatial Attention** modules results in a **powerful hybrid architecture** that outperforms classical CNN-based models.  
